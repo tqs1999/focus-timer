@@ -20,10 +20,7 @@ body {
 .topbar {
   position: absolute;
   top: 25px;
-  left: 40px;
   right: 40px;
-  display: flex;
-  justify-content: space-between;
   font-size: 15px;
   opacity: 0.6;
   letter-spacing: 1px;
@@ -40,9 +37,16 @@ body {
   gap: 25px;
   font-size: 18vw;
   font-weight: 700;
+  letter-spacing: 4px;
   text-shadow:
     0 0 25px rgba(255,255,255,0.08),
     0 0 60px rgba(255,255,255,0.04);
+}
+
+/* 🔥 FULLSCREEN BIGGER + WIDER */
+.fullscreen #timer {
+  font-size: 22vw;
+  letter-spacing: 8px;
 }
 
 /* LABELS */
@@ -76,14 +80,9 @@ button {
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(255,208,0,0.2);
-  transition: 0.2s;
 }
 
-button:hover {
-  transform: translateY(-2px);
-}
-
-/* SIDE BUTTONS */
+/* SIDE */
 .side-btn {
   position: absolute;
   right: 35px;
@@ -111,7 +110,7 @@ input {
   color: white;
 }
 
-/* CUSTOM BOX */
+/* CUSTOM */
 .custom {
   position: absolute;
   top: 75%;
@@ -130,7 +129,6 @@ input {
 <body>
 
 <div class="topbar">
-  <div>Focus Mode</div>
   <div onclick="toggleFullscreen()" style="cursor:pointer;">Fullscreen</div>
 </div>
 
