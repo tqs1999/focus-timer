@@ -27,21 +27,22 @@ body {
   opacity: 0.6;
 }
 
-/* TIMER */
+/* TIMER FIXED FOR LONG TEXT */
 #timer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-weight: 700;
-  letter-spacing: 4px;
-  font-size: 20vw;
+  letter-spacing: 2px;
+  font-size: 10vw;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* FULLSCREEN */
 .fullscreen #timer {
-  font-size: 28vw;
+  font-size: 16vw;
 }
 
 /* CONTROLS */
@@ -109,7 +110,7 @@ input {
   <div onclick="toggleFullscreen()" style="cursor:pointer;">Fullscreen</div>
 </div>
 
-<div id="timer">25 min</div>
+<div id="timer">25 MIN</div>
 
 <button id="plus" class="side-btn" onclick="addTime()">+</button>
 <button id="minus" class="side-btn" onclick="reduceTime()">−</button>
@@ -134,12 +135,16 @@ let startTime = null;
 let remaining = duration;
 let interval = null;
 
+/* 🔥 FULL FORMAT */
 function formatTime(sec) {
   let h = Math.floor(sec / 3600);
   let m = Math.floor((sec % 3600) / 60);
 
-  if (h > 0) return `${h} hr ${m} min`;
-  return `${m} min`;
+  let text = "";
+  if (h > 0) text += h + " HOUR ";
+  text += m + " MIN";
+
+  return text;
 }
 
 function updateDisplay(sec) {
