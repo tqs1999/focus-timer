@@ -34,14 +34,12 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-weight: 700;
-  letter-spacing: 6px;
-  font-size: 20vw; /* normal mode */
-  text-shadow:
-    0 0 15px rgba(255,255,255,0.2),
-    0 0 30px rgba(255,255,255,0.1);
+  letter-spacing: 4px;
+  font-size: 20vw;
+  text-align: center;
 }
 
-/* 🔥 FULLSCREEN BIG SIZE */
+/* FULLSCREEN */
 .fullscreen #timer {
   font-size: 28vw;
 }
@@ -54,7 +52,7 @@ body {
   text-align: center;
 }
 
-/* CUSTOM INPUT */
+/* INPUT */
 #customBox {
   position: absolute;
   top: 70%;
@@ -62,7 +60,6 @@ body {
   transform: translateX(-50%);
 }
 
-/* HIDE IN FULLSCREEN */
 .fullscreen .controls,
 .fullscreen #customBox {
   display: none;
@@ -79,18 +76,16 @@ button {
   cursor: pointer;
 }
 
-/* SIDE BUTTONS */
+/* SIDE */
 .side-btn {
   position: absolute;
   right: 30px;
   background: #ffd000;
-  color: black;
   border-radius: 50%;
   width: 55px;
   height: 55px;
   font-size: 26px;
   border: none;
-  cursor: pointer;
 }
 
 #plus { top: 45%; }
@@ -114,7 +109,7 @@ input {
   <div onclick="toggleFullscreen()" style="cursor:pointer;">Fullscreen</div>
 </div>
 
-<div id="timer">25:00</div>
+<div id="timer">25 min</div>
 
 <button id="plus" class="side-btn" onclick="addTime()">+</button>
 <button id="minus" class="side-btn" onclick="reduceTime()">−</button>
@@ -130,46 +125,58 @@ input {
   <button onclick="setCustomTime()">Set</button>
 </div>
 
-<!-- SOUNDS -->
 <audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
 <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
 
 <script>
-let time = 1500;
-let interval;
+let duration = 1500;
+let startTime = null;
+let remaining = duration;
+let interval = null;
 
-function update() {
-  let min = Math.floor(time / 60);
-  let sec = time % 60;
-  document.getElementById("timer").innerText =
-    min + ":" + (sec < 10 ? "0" + sec : sec);
+function formatTime(sec) {
+  let h = Math.floor(sec / 3600);
+  let m = Math.floor((sec % 3600) / 60);
+
+  if (h > 0) return `${h} hr ${m} min`;
+  return `${m} min`;
+}
+
+function updateDisplay(sec) {
+  document.getElementById("timer").innerText = formatTime(sec);
 }
 
 function start() {
   if (interval) return;
-  interval = setInterval(() => {
-    time--;
 
-    if (time <= 10 && time > 0) {
+  startTime = Date.now() - (duration - remaining) * 1000;
+
+  interval = setInterval(() => {
+    let elapsed = Math.floor((Date.now() - startTime) / 1000);
+    remaining = duration - elapsed;
+
+    if (remaining <= 10 && remaining > 0) {
       let tick = document.getElementById("tick");
       tick.currentTime = 0;
       tick.play();
     }
 
-    update();
+    if (remaining <= 0) {
+      remaining = 0;
+      updateDisplay(remaining);
 
-    if (time <= 0) {
       let alarm = document.getElementById("alarm");
       alarm.currentTime = 0;
       alarm.play();
 
-      // 🔥 NOW 5 SEC SOUND
       setTimeout(() => {
         alarm.pause();
         alarm.currentTime = 0;
       }, 5000);
 
       pause();
+    } else {
+      updateDisplay(remaining);
     }
   }, 1000);
 }
@@ -181,27 +188,30 @@ function pause() {
 
 function reset() {
   pause();
-  time = 1500;
-  update();
+  remaining = duration;
+  updateDisplay(remaining);
 }
 
 function addTime() {
-  time += 60;
-  update();
+  duration += 60;
+  remaining += 60;
+  updateDisplay(remaining);
 }
 
 function reduceTime() {
-  if (time > 60) {
-    time -= 60;
-    update();
+  if (duration > 60) {
+    duration -= 60;
+    remaining -= 60;
+    updateDisplay(remaining);
   }
 }
 
 function setCustomTime() {
   let minutes = document.getElementById("customTime").value;
   if (minutes > 0) {
-    time = minutes * 60;
-    update();
+    duration = minutes * 60;
+    remaining = duration;
+    updateDisplay(remaining);
   }
 }
 
@@ -215,7 +225,7 @@ function toggleFullscreen() {
   }
 }
 
-update();
+updateDisplay(remaining);
 </script>
 
 </body>
