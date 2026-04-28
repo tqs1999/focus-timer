@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Focus Timer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+}
+
+/* TOP BAR */
+.topbar {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+/* TIMER */
+#timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  letter-spacing: 6px;
+  font-size: 20vw; /* normal mode */
+  text-shadow:
+    0 0 15px rgba(255,255,255,0.2),
+    0 0 30px rgba(255,255,255,0.1);
+}
+
+/* 🔥 FULLSCREEN BIG SIZE */
+.fullscreen #timer {
+  font-size: 28vw;
+}
+
+/* CONTROLS */
+.controls {
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
+  text-align: center;
+}
+
+/* CUSTOM INPUT */
+#customBox {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* HIDE IN FULLSCREEN */
+.fullscreen .controls,
+.fullscreen #customBox {
+  display: none;
+}
+
+button {
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 25px;
+  border: none;
+  background: #ffd000;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* SIDE BUTTONS */
+.side-btn {
+  position: absolute;
+  right: 30px;
+  background: #ffd000;
+  color: black;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 26px;
+  border: none;
+  cursor: pointer;
+}
+
+#plus { top: 45%; }
+#minus { top: 55%; }
+
+input {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  width: 120px;
+  font-size: 18px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div>Focus Mode</div>
+  <div onclick="toggleFullscreen()" style="cursor:pointer;">Fullscreen</div>
+</div>
+
+<div id="timer">25:00</div>
+
+<button id="plus" class="side-btn" onclick="addTime()">+</button>
+<button id="minus" class="side-btn" onclick="reduceTime()">−</button>
+
+<div class="controls">
+  <button onclick="start()">Start</button>
+  <button onclick="pause()">Pause</button>
+  <button onclick="reset()">Reset</button>
+</div>
+
+<div id="customBox">
+  <input id="customTime" type="number" placeholder="Min">
+  <button onclick="setCustomTime()">Set</button>
+</div>
+
+<!-- SOUNDS -->
+<audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+<audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
+
+<script>
+let time = 1500;
+let interval;
+
+function update() {
+  let min = Math.floor(time / 60);
+  let sec = time % 60;
+  document.getElementById("timer").innerText =
+    min + ":" + (sec < 10 ? "0" + sec : sec);
+}
+
+function start() {
+  if (interval) return;
+  interval = setInterval(() => {
+    time--;
+
+    if (time <= 10 && time > 0) {
+      let tick = document.getElementById("tick");
+      tick.currentTime = 0;
+      tick.play();
+    }
+
+    update();
+
+    if (time <= 0) {
+      let alarm = document.getElementById("alarm");
+      alarm.currentTime = 0;
+      alarm.play();
+
+      // 🔥 NOW 5 SEC SOUND
+      setTimeout(() => {
+        alarm.pause();
+        alarm.currentTime = 0;
+      }, 5000);
+
+      pause();
+    }
+  }, 1000);
+}
+
+function pause() {
+  clearInterval(interval);
+  interval = null;
+}
+
+function reset() {
+  pause();
+  time = 1500;
+  update();
+}
+
+function addTime() {
+  time += 60;
+  update();
+}
+
+function reduceTime() {
+  if (time > 60) {
+    time -= 60;
+    update();
+  }
+}
+
+function setCustomTime() {
+  let minutes = document.getElementById("customTime").value;
+  if (minutes > 0) {
+    time = minutes * 60;
+    update();
+  }
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    document.body.classList.add("fullscreen");
+  } else {
+    document.exitFullscreen();
+    document.body.classList.remove("fullscreen");
+  }
+}
+
+update();
+</script>
+
+</body>
+</html>
