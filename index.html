@@ -43,23 +43,30 @@ body {
     0 0 60px rgba(255,255,255,0.04);
 }
 
-/* 🔥 FULLSCREEN BIGGER + WIDER */
+/* FULLSCREEN */
 .fullscreen #timer {
   font-size: 22vw;
   letter-spacing: 8px;
 }
 
-/* LABELS */
-.labels {
-  position: absolute;
-  top: 67%;
-  left: 50%;
-  transform: translateX(-50%);
+/* 🔥 NEW STRUCTURE */
+.time-box {
   display: flex;
-  gap: 100px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
   font-size: 18px;
   opacity: 0.5;
   letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.colon {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 /* CONTROLS */
@@ -132,18 +139,28 @@ input {
   <div onclick="toggleFullscreen()" style="cursor:pointer;">Fullscreen</div>
 </div>
 
+<!-- 🔥 FIXED TIMER -->
 <div id="timer">
-  <div id="h">0</div>
-  <div>:</div>
-  <div id="m">25</div>
-  <div>:</div>
-  <div id="s">00</div>
-</div>
 
-<div class="labels">
-  <div>Hours</div>
-  <div>Minutes</div>
-  <div>Seconds</div>
+  <div class="time-box">
+    <div id="h">0</div>
+    <div class="label">Hours</div>
+  </div>
+
+  <div class="colon">:</div>
+
+  <div class="time-box">
+    <div id="m">25</div>
+    <div class="label">Minutes</div>
+  </div>
+
+  <div class="colon">:</div>
+
+  <div class="time-box">
+    <div id="s">00</div>
+    <div class="label">Seconds</div>
+  </div>
+
 </div>
 
 <button id="plus" class="side-btn" onclick="addTime()">+</button>
