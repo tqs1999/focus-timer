@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Focus Timer</title>
@@ -49,7 +50,7 @@ body {
   letter-spacing: 8px;
 }
 
-/* 🔥 NEW STRUCTURE */
+/* STRUCTURE */
 .time-box {
   display: flex;
   flex-direction: column;
@@ -125,12 +126,14 @@ input {
   transform: translateX(-50%);
 }
 
-/* FULLSCREEN CLEAN */
+/* ✅ FULLSCREEN CLEAN (UPDATED) */
 .fullscreen .controls,
-.fullscreen .custom {
+.fullscreen .custom,
+.fullscreen .side-btn {
   display: none;
 }
 </style>
+
 </head>
 
 <body>
@@ -139,7 +142,6 @@ input {
   <div onclick="toggleFullscreen()" style="cursor:pointer;">Fullscreen</div>
 </div>
 
-<!-- 🔥 FIXED TIMER -->
 <div id="timer">
 
   <div class="time-box">
@@ -163,8 +165,7 @@ input {
 
 </div>
 
-<button id="plus" class="side-btn" onclick="addTime()">+</button>
-<button id="minus" class="side-btn" onclick="reduceTime()">−</button>
+<button id="plus" class="side-btn" onclick="addTime()">+</button> <button id="minus" class="side-btn" onclick="reduceTime()">−</button>
 
 <div class="controls">
   <button onclick="start()">Start</button>
@@ -177,8 +178,7 @@ input {
   <button onclick="setCustomTime()">Set</button>
 </div>
 
-<audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
-<audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
+<audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio> <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
 
 <script>
 let duration = 1500;
