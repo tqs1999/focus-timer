@@ -3,10 +3,6 @@
 
 <head>
 
-<!-- ✅ AdSense Code (IMPORTANT) -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902483037546427"
-crossorigin="anonymous"></script>
-
 <title>Focus Timer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,7 +28,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* TIMER (BALANCED CLEAN LOOK) */
+/* TIMER */
 #timer {
   position: absolute;
   top: 50%;
@@ -46,13 +42,11 @@ body {
   letter-spacing: 4px;
   color: #ffffff;
 
-  /* Clean subtle glow */
   text-shadow:
     0 0 10px rgba(255,255,255,0.15),
     0 0 25px rgba(255,255,255,0.08);
 }
 
-/* FULLSCREEN (SLIGHT BOOST ONLY) */
 .fullscreen #timer {
   font-size: 22vw;
   letter-spacing: 8px;
@@ -62,7 +56,6 @@ body {
     0 0 35px rgba(255,255,255,0.12);
 }
 
-/* STRUCTURE */
 .time-box {
   display: flex;
   flex-direction: column;
@@ -82,7 +75,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* CONTROLS */
 .controls {
   position: absolute;
   bottom: 40px;
@@ -102,7 +94,6 @@ button {
   box-shadow: 0 4px 15px rgba(255,208,0,0.2);
 }
 
-/* SIDE */
 .side-btn {
   position: absolute;
   right: 35px;
@@ -118,7 +109,6 @@ button {
 #plus { top: 45%; }
 #minus { top: 55%; }
 
-/* INPUT */
 input {
   padding: 12px;
   border-radius: 15px;
@@ -130,7 +120,6 @@ input {
   color: white;
 }
 
-/* CUSTOM */
 .custom {
   position: absolute;
   top: 75%;
@@ -138,7 +127,6 @@ input {
   transform: translateX(-50%);
 }
 
-/* FULLSCREEN CLEAN */
 .fullscreen .controls,
 .fullscreen .custom,
 .fullscreen .side-btn {
