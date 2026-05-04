@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
+
+<!-- ✅ AdSense Code (IMPORTANT) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902483037546427"
+crossorigin="anonymous"></script>
+
 <title>Focus Timer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,8 +15,8 @@
 <style>
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #111 0%, #000 80%);
-  color: #e8e4d9;
+  background: radial-gradient(circle at top, #000 0%, #000 100%);
+  color: #ffffff;
   font-family: 'Inter', sans-serif;
   height: 100vh;
   overflow: hidden;
@@ -23,11 +28,11 @@ body {
   top: 25px;
   right: 40px;
   font-size: 15px;
-  opacity: 0.6;
+  opacity: 0.7;
   letter-spacing: 1px;
 }
 
-/* TIMER */
+/* TIMER (BRIGHT UPGRADE) */
 #timer {
   position: absolute;
   top: 50%;
@@ -39,15 +44,23 @@ body {
   font-size: 18vw;
   font-weight: 700;
   letter-spacing: 4px;
+  color: #ffffff;
+
   text-shadow:
-    0 0 25px rgba(255,255,255,0.08),
-    0 0 60px rgba(255,255,255,0.04);
+    0 0 20px rgba(255,255,255,0.4),
+    0 0 50px rgba(255,255,255,0.25),
+    0 0 100px rgba(255,255,255,0.15);
 }
 
-/* FULLSCREEN */
+/* FULLSCREEN EXTRA BRIGHT */
 .fullscreen #timer {
   font-size: 22vw;
   letter-spacing: 8px;
+
+  text-shadow:
+    0 0 30px rgba(255,255,255,0.7),
+    0 0 80px rgba(255,255,255,0.5),
+    0 0 150px rgba(255,255,255,0.3);
 }
 
 /* STRUCTURE */
@@ -126,7 +139,7 @@ input {
   transform: translateX(-50%);
 }
 
-/* ✅ FULLSCREEN CLEAN (UPDATED) */
+/* FULLSCREEN CLEAN */
 .fullscreen .controls,
 .fullscreen .custom,
 .fullscreen .side-btn {
@@ -165,7 +178,8 @@ input {
 
 </div>
 
-<button id="plus" class="side-btn" onclick="addTime()">+</button> <button id="minus" class="side-btn" onclick="reduceTime()">−</button>
+<button id="plus" class="side-btn" onclick="addTime()">+</button>
+<button id="minus" class="side-btn" onclick="reduceTime()">−</button>
 
 <div class="controls">
   <button onclick="start()">Start</button>
@@ -178,7 +192,8 @@ input {
   <button onclick="setCustomTime()">Set</button>
 </div>
 
-<audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio> <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
+<audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+<audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
 
 <script>
 let duration = 1500;
