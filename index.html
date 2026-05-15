@@ -19,6 +19,12 @@ body {
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.fullscreen {
+  overflow: hidden;
+  height: 100vh;
 }
 
 /* TOP BAR */
@@ -219,7 +225,6 @@ input {
   <button onclick="setCustomTime()">Set</button>
 </div>
 
-<!-- INFO SECTION -->
 <div class="info-section">
 
   <h2>About Pomodoro Timer</h2>
@@ -230,25 +235,8 @@ input {
     and study consistency.
   </p>
 
-  <h2>How To Use</h2>
-  <ul>
-    <li>Set your preferred study duration.</li>
-    <li>Press Start and focus on one task only.</li>
-    <li>Take short breaks between sessions.</li>
-    <li>Repeat the cycle to maintain productivity.</li>
-  </ul>
-
-  <h2>Benefits of Focus Sessions</h2>
-  <ul>
-    <li>Improves concentration</li>
-    <li>Reduces distractions</li>
-    <li>Helps avoid burnout</li>
-    <li>Builds consistent study habits</li>
-  </ul>
-
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
   <a href="#">Privacy Policy</a>
   <a href="#">About Us</a>
