@@ -17,8 +17,8 @@ body {
   background: radial-gradient(circle at top, #000 0%, #000 100%);
   color: #ffffff;
   font-family: 'Inter', sans-serif;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* TOP BAR */
@@ -29,6 +29,7 @@ body {
   font-size: 15px;
   opacity: 0.7;
   letter-spacing: 1px;
+  z-index: 10;
 }
 
 /* TIMER */
@@ -135,6 +136,42 @@ input {
 .fullscreen .side-btn {
   display: none;
 }
+
+/* INFO SECTION */
+.info-section {
+  position: relative;
+  margin-top: 100vh;
+  padding: 80px 10%;
+  background: #0a0a0a;
+  color: white;
+  line-height: 1.8;
+}
+
+.info-section h2 {
+  color: #ffd000;
+  margin-top: 40px;
+}
+
+.info-section p,
+.info-section li {
+  opacity: 0.85;
+  font-size: 16px;
+}
+
+/* FOOTER */
+.footer {
+  padding: 30px;
+  text-align: center;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer a {
+  color: #ffd000;
+  margin: 0 15px;
+  text-decoration: none;
+  opacity: 0.8;
+}
 </style>
 
 </head>
@@ -181,6 +218,42 @@ input {
   <input id="customTime" type="number" placeholder="Min">
   <button onclick="setCustomTime()">Set</button>
 </div>
+
+<!-- INFO SECTION -->
+<div class="info-section">
+
+  <h2>About Pomodoro Timer</h2>
+  <p>
+    Pomodoro Timer Pro is a simple focus timer designed for students,
+    creators, and professionals who want distraction-free deep work sessions.
+    The Pomodoro Technique helps improve concentration, productivity,
+    and study consistency.
+  </p>
+
+  <h2>How To Use</h2>
+  <ul>
+    <li>Set your preferred study duration.</li>
+    <li>Press Start and focus on one task only.</li>
+    <li>Take short breaks between sessions.</li>
+    <li>Repeat the cycle to maintain productivity.</li>
+  </ul>
+
+  <h2>Benefits of Focus Sessions</h2>
+  <ul>
+    <li>Improves concentration</li>
+    <li>Reduces distractions</li>
+    <li>Helps avoid burnout</li>
+    <li>Builds consistent study habits</li>
+  </ul>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="#">Privacy Policy</a>
+  <a href="#">About Us</a>
+  <a href="#">Contact</a>
+</footer>
 
 <audio id="tick" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
 <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg"></audio>
